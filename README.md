@@ -50,7 +50,7 @@ free_pages(buf2,order);<br>
 # 3 kernel list
 内核链表<br>
 [list head详解](https://blog.csdn.net/yong199105140/article/details/8234089?locationNum=4&fps=1)<br>
-
+[list_head结构体的理解](https://blog.csdn.net/u013904227/article/details/50931540)
 
 
 
