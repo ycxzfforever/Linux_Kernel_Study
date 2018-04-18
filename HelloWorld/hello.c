@@ -10,9 +10,7 @@
 #include <linux/init.h>
 
 static int year=2007;
-
 module_param(year, int, 0644);
-
 
 int __init hello_init(void)
 {
