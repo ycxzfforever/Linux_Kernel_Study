@@ -42,15 +42,15 @@ CPU利用段式内存管理单元，将逻辑地址转换为线性地址，再�
 `linux逻辑地址和线性地址指的是同一个地址，巧妙的绕过了段机制，而完全利用了分页机制`<br>
 
 ```c
-order = get_order(8192);<br>
-buf = __get_free_pages(GFP_KERNEL,order);<br>
-//order是2的幂数,即order=0,是一页,order=1是两页,order=2,是四页,order=3是八页<br>
-free_pages(buf2,order);<br>
+order = get_order(8192);
+buf = __get_free_pages(GFP_KERNEL,order);
+//order是2的幂数,即order=0,是一页,order=1是两页,order=2,是四页,order=3是八页
+free_pages(buf2,order);
 ```
 # 3 kernel list
 内核链表<br>
 [list head详解](https://blog.csdn.net/yong199105140/article/details/8234089?locationNum=4&fps=1)<br>
-[list_head结构体的理解](https://blog.csdn.net/u013904227/article/details/50931540)
+[list_head结构体的理解](https://blog.csdn.net/u013904227/article/details/50931540)<br>
 
 
 
