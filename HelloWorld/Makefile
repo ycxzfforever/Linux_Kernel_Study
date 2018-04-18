@@ -11,8 +11,7 @@ install:
 #$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install INSTALL_MOD_PATH=$(INSTALL_PATH)
 	cp -f $(OBJ).ko $(INSTALL_PATH)
 clean:
-	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions Module* modules*
-    
+	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions Module* modules*    
 .PHONY: modules modules_install clean
 else
 	obj-m := hello.o
