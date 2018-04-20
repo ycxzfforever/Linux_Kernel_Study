@@ -1,0 +1,15 @@
+# Compiler
+CC = /opt/am335x_gcc/bin/arm-linux-gnueabihf-gcc
+
+# Target
+OBJS = app-mem
+
+all: $(OBJS)
+
+$(OBJS): 
+	$(CC) app-mem.c -o app-mem		
+
+.PHONY: clean
+clean:
+	rm -f *.o
+	rm -f app-mem
