@@ -1,0 +1,32 @@
+# The path of kernel source code
+INCLUDEDIR = /home/study/part2/lesson3/linux-2.4.18/include/
+
+# Compiler
+CC = arm-linux-gcc
+
+# Options
+CFLAGS = -DMODULE -D__KERNEL__ -Wall -Wstrict-prototypes -Wno-trigraphs -Os \
+-mapcs -fno-strict-aliasing -fno-common -fno-common -pipe \
+-mapcs-32 -march=armv4 -mtune=arm9tdmi -mshort-load-bytes \
+-msoft-float  -I$(INCLUDEDIR)
+
+# Target
+OBJS = memdev.o
+
+all: $(OBJS)
+
+$(OBJS): memdev.c memdev.h
+	$(CC) $(CFLAGS) -c $<
+	$(CC) app-read.c -static -o app-read
+	$(CC) app-write.c -static -o app-write		
+	
+install:
+	insmod $(OBJS)
+
+uninstall:
+	rmmod memdev
+
+.PHONY: clean
+clean:
+	rm -f *.o
+	rm -f app-*
