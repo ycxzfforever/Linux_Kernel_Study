@@ -18,14 +18,18 @@ struct timer_list timer;
 void timer_function(int para)
 {
     printk("Timer Expired and para is %d !!\n",para);	
+	timer.data = jiffies;
+	timer.expires = jiffies + (3 * HZ);
+	timer.function = timer_function;
+	add_timer(&timer);
 }
 
 
-int timer_init()
+int __init timer_init(void)
 {
 	init_timer(&timer);
-	timer.data = 5;
-	timer.expires = jiffies + (20 * HZ);
+	timer.data = jiffies;
+	timer.expires = jiffies + (3 * HZ);
 	timer.function = timer_function;
 	add_timer(&timer);
 	
@@ -33,7 +37,7 @@ int timer_init()
 }
 
 
-void timer_exit()
+void __exit timer_exit(void)
 {
 	del_timer( &timer );
 }

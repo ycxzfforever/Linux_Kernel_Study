@@ -1,26 +1,18 @@
-# The path of kernel source code
-INCLUDEDIR = /usr/src/linux-2.4/include/
-
-# Compiler
-CC = gcc
-
-# Options
-CFLAGS = -D__KERNEL__ -DMODULE -O -Wall -I$(INCLUDEDIR)
-
-# Target
-OBJS = timer.o
-
-all: $(OBJS)
-
-$(OBJS): timer.c
-	$(CC) $(CFLAGS) -c $<
-
+ifeq ($(KERNELRELEASE),)
+KERNELDIR = /opt/linux-3.2.0-psp04.06.00.11
+INSTALL_PATH = /mymodules
+ARCH = arm 
+CROSS_COMPILE = /opt/am335x_gcc/bin/arm-linux-gnueabihf-
+PWD = $(shell pwd)
+OBJ = timer
+modules:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 install:
-	insmod $(OBJS)
-
-uninstall:
-	rmmod timer
-
-.PHONY: clean
+#$(MAKE) -C $(KERNELDIR) M=$(PWD) modules_install INSTALL_MOD_PATH=$(INSTALL_PATH)
+	cp -f $(OBJ).ko $(INSTALL_PATH)
 clean:
-	rm -f *.o
+	rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions Module* modules*    
+.PHONY: modules modules_install clean
+else
+	obj-m := timer.o
+endif
