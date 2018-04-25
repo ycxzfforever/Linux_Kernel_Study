@@ -1,0 +1,31 @@
+# The path of kernel source code
+INCLUDEDIR = /home/study/part2/lesson3/linux-2.4.18/include/
+
+# Compiler
+CC = arm-linux-gcc
+
+# Options
+CFLAGS = -DMODULE -D__KERNEL__ -Wall -Wstrict-prototypes -Wno-trigraphs -Os \
+-mapcs -fno-strict-aliasing -fno-common -fno-common -pipe \
+-mapcs-32 -march=armv4 -mtune=arm9tdmi -mshort-load-bytes \
+-msoft-float  -I$(INCLUDEDIR)
+
+# Target
+OBJS = sbc2410_buttons.o
+
+all: $(OBJS)
+
+$(OBJS): sbc2410_buttons.c 
+	$(CC) $(CFLAGS) -c $<
+	$(CC) app-button.c -static -o app-button	
+	
+install:
+	insmod $(OBJS)
+
+uninstall:
+	rmmod sbc2410_buttons
+
+.PHONY: clean
+clean:
+	rm -f *.o
+	rm -f app-button
