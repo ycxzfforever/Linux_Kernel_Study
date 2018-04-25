@@ -52,7 +52,8 @@ free_pages(buf2,order);
 [list head详解](https://blog.csdn.net/yong199105140/article/details/8234089?locationNum=4&fps=1)<br>
 [list_head结构体的理解](https://blog.csdn.net/u013904227/article/details/50931540)<br>
 
-
+# 4 mmap<内存映射>
+[mmap之内存映射文件与常规文件操作比较](https://blog.csdn.net/qq_32809273/article/details/52894051)
 
 
 
